@@ -11,6 +11,11 @@ body{
     font-size: 20px;
     color: rgb(57, 236, 8);
     margin-top: 43px;
+    background-color: #44CF2880;
+    opacity:0.6;
+    width: 50px;
+    height: 30px;
+    border-radius: 10px;
 
 }
 .coluna3{
@@ -22,9 +27,29 @@ body{
 .conteiner{
     display: grid;
     gap: 10px;
-    grid-template-columns: 0fr 1fr 1fr 40fr;
+    grid-template-columns: 1fr 1fr 1fr 15fr;
 }
 .ponto{
     color: white;
     margin-left: 40px;
+}
+.coluna4{
+    color: white;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-left: auto;
+    background-color: #696666;
+    width: 170px;
+    height: 35px;
+    border-radius: 10px;
+}
+.Data{
+    color: white;
+    font-size: 25px;
+    margin-top: 25px;
+    margin-left: 45px;
+    height: 50px;
+    background-color: #3F3D3D;
+    width: 250px;
+    border-radius: 10px;
 }
