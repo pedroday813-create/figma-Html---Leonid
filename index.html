@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="styles.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     <title>Document</title>
 </head>
 <body>
+    
     <header>
-
        <div class="conteiner">
         
         <div class="coluna1">
@@ -40,12 +43,113 @@
         </div>
 
         <div class="Data">
-            <h3>1D    7D    3M    6M    1Y</h3>
+            <h3>1D</h3>
+            <h3>7D</h3>
+            <h3>3M</h3>
+            <h3>6M</h3>
+            <h3>1Y</h3>
         </div>
 
     </header>
 
-    <main></main>
-    <footer></footer>
+    /* ---------------------------------- */
+    /* as linhas foram feitas pelo gemini */
+    /* ---------------------------------- */
+    <main>
+        <div class="chart-container">
+            <canvas id="myChart"></canvas>
+        </div>
+    </main>
+
+    <footer>
+        <div class="legenda-item">
+            <div class="bola"></div>
+            <p>Last Month</p> 
+        </div>
+        
+        <div class="legenda-item">
+            <div class="bola1"></div>
+            <p>This Month</p> 
+        </div>
+    </footer>
+
+    <script>
+        const ctx = document.getElementById('myChart');
+
+        const labels = [
+            'Jan', '', '', '', '', 'Feb', '', '', '', '', 
+            'Mar', '', '', '', '', 'Apr', '', '', '', '', 
+            'May', '', '', '', ''
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Linha Azul',
+                    data: [
+                        22000, 28000, 32000, 21000, 15000, 12000, 25000, 18000, 35000, 33000, 
+                        30000, 43000, 38000, 42000, 40000, 45000, 34000, 32000, 33000, 36000, 
+                        30000, 24000, 35000, 28000, 32000
+                    ],
+                    borderColor: 'rgb(59, 130, 246)', 
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    tension: 0.1, 
+                    pointRadius: 0 
+                },
+                {
+                    label: 'Linha Vermelha',
+                    data: [
+                        28000, 33000, 30000, 28000, 24000, 22000, 25000, 28000, 34000, 32000, 
+                        30000, 32000, 38000, 36000, 40000, 38000, 35000, 33000, 32000, 30000, 
+                        33000, 35000, 30000, 34000, 32000
+                    ],
+                    borderColor: 'rgb(239, 68, 68)', 
+                    backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                    tension: 0.1,
+                    pointRadius: 0
+                }
+            ]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, 
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: 'white'
+                        },
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        min: 0,
+                        max: 60000,
+                        ticks: {
+                            color: 'white',
+                            callback: function(value, index, values) {
+                                return '$' + value / 1000 + 'K';
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.2)' 
+                        }
+                    }
+                }
+            }
+        };
+
+        new Chart(ctx, config);
+    </script>
 </body>
 </html>
